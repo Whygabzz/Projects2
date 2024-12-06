@@ -55,7 +55,7 @@ CREATE TABLE `users` (
   `user` varchar(20) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `adm?` tinyint NOT NULL DEFAULT '0',
+  `adm` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `usario` (`user`),
   UNIQUE KEY `email` (`email`)
