@@ -234,11 +234,24 @@ def edit_user(user_old='',user='',senha='',email=''):
         if len(rows) == 0:
             print('Não tem usuário men :()')
             return (False,'Não existe nenhum usuário cadastrado')
+        
+        id = None
         for row in rows:
-            if user == row[1] or email == row[2]:
-                return (False,'Já existe um usuário com essas informações')
             if user_old == row[1]:
                 id = row[0]
+    
+                if user == '':
+                    user = row[1] 
+                if email == '':
+                    email = row[2]  
+                if senha == '':
+                    senha = row[3]
+
+            elif (user == row[1] or email == row[2]) and user_old != row[1]:
+                return (False,'Já existe um usuário com essas informações')
+        
+        if id == None:
+            return (False, 'Usuário antigo não encontrado')
 
         cursor.execute(f'UPDATE USERS SET usuario = "{user}", email = "{email}", senha = "{senha}" WHERE ID = "{id}"')
         database.commit()
